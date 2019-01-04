@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 #!!!! Before running this code, please ensure:
 #1. That you have the csv files that come with this document ("GenerateNetworkGraphsFiles")
-#2. That any changes you made with it doesn't modify the number of columns in the document (so add biases or tech only)
+#2. That any change you made with it doesn't modify the number of columns in the document (so add biases or tech only)
 #3. That you have changed the path location (marked "#PATH LOCATION#, just ctrl+F it) to the location the above files
 # are located on your computer
 #!!!! This should be all you need to change in the code. Note: This code works on Python 3.0
@@ -89,7 +89,7 @@ def draw_graph(graph, labels=None, graph_layout='reingold', #please don't change
 ############################# This is input data for the graph
 
 
-TechToEffort = pd.read_csv(r"C:\Users\Lenovo\Dropbox\UCL\4th year modules\TKE\MATRIX PROGRAM\TechToEffortCSV.csv",
+TechToEffort = pd.read_csv(r"C:\Users\Lenovo\Dropbox\UCL\4th year modules\TKE\MATRIX PROGRAM\GenerateNetworkGraphsFiles\TechToEffortCSV.csv",
                          delimiter= ',') #PATH LOCATION#
                         #download the CSV file and change path!
 
@@ -98,27 +98,27 @@ TechToEffort_py = np.array(TechToEffort.values) #convert to numpyarray
 TechToEffort_py = TechToEffort_py.tolist()  #convert to python list of lists (ie, matrix)
 #the above process ereases the headers, so add them back in
 First_row = ['Tech & Effort',
-               '1. Examining fewer cues.',
-               '2. Reducing the difficulty associated with retrieving and storing cue values.',
-               '3. Simplifying the weighting principles for cues.',
-               '4. Integrating less information.',
-               '5. Examining fewer alternatives.']
+             'Searching',
+             'Storage',
+             'Simplification',
+             'Segregation/Synthesis',
+             'Selection']
 TechToEffort_py.insert(0, First_row)
 #print(TechToEffort_py)
 
 
-BiasToEffort = pd.read_csv(r"C:\Users\Lenovo\Dropbox\UCL\4th year modules\TKE\MATRIX PROGRAM\BiasToEffortCSV.csv",
+BiasToEffort = pd.read_csv(r"C:\Users\Lenovo\Dropbox\UCL\4th year modules\TKE\MATRIX PROGRAM\GenerateNetworkGraphsFiles\BiasToEffortCSV.csv",
                          delimiter= ',') #PATH LOCATION#
 
 
 BiasToEffort_py = np.array(BiasToEffort.values)
 BiasToEffort_py = BiasToEffort_py.tolist()
 First_row = ['Bias & Effort',
-               '1. Examining fewer cues.',
-               '2. Reducing the difficulty associated with retrieving and storing cue values.',
-               '3. Simplifying the weighting principles for cues.',
-               '4. Integrating less information.',
-               '5. Examining fewer alternatives.']
+             'Searching',
+             'Storage',
+             'Simplification',
+             'Segregation/Synthesis',
+             'Selection']
 BiasToEffort_py.insert(0, First_row)
 
 G = [] #create an empty graph
@@ -144,11 +144,11 @@ for i in range(1, len(BiasToEffort_py)-1): #creates edges, like above. I just ad
 
 #generating separate list of values, so that i can color the nodes differently
 
-effortlist = ['1. Examining fewer cues.',
-               '2. Reducing the difficulty associated with retrieving and storing cue values.',
-               '3. Simplifying the weighting principles for cues.',
-               '4. Integrating less information.',
-               '5. Examining fewer alternatives.']
+effortlist = ['Searching',
+             'Storage',
+             'Simplification',
+             'Segregation/Synthesis',
+             'Selection']
 techlist = []
 for i in range(1, len(TechToEffort_py)-1):
     techlist.append(TechToEffort_py[i][0])
